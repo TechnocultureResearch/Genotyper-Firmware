@@ -39,6 +39,13 @@ Then we can see that there is some changes in example code like
 
 # How to Implement CV technique using Methodscipt using python
 
+## Code used for enter parameter value:
+|Code line|Purpose|
+|---|---|
+|`set_e {E_begin}`|This code line is used to enter the `Ebegin` value of CV technique|
+|`meas_loop_ca p c {E_begin} {E_vertex2} {t_equilibration}`|This code line is used to enter the `Ebegin` , `Evertex2` and ` tequilibration` value of CV technique|
+|`meas_loop_cv p c {E_begin} , {E_vtx1}, {E_vtx2},{E_step},{ scan_rate}`|This code line is used to enter the `Ebegin` , `Evertex1`, `Evertex2`, `Estep` and  ` scanrate` value of CV technique|
+
 
 
 
