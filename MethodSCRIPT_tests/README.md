@@ -41,6 +41,7 @@ Then we can see that there is some changes in example code like
 
 ## Methodscript For CV
 
+```
 e
 var c
 var p
@@ -48,15 +49,15 @@ set_pgstat_mode 2
 set_max_bandwidth 40
 set_range ba 100u
 set_autoranging ba 1n 100u
-comment line-- #  set_e {E_begin}
+#  set_e {E_begin} ---[comment line]
 set_e -500m
 cell_on
-comment line-- #autorange for 1s prior to CV
-comment line-- # meas_loop_ca p c {E_begin} {E_vertex2} {t_equilibration}
+# autorange for 1s prior to CV   ---[comment line]
+# meas_loop_ca p c {E_begin} {E_vertex2} {t_equilibration}   ---[comment line]
 
 meas_loop_ca p c -500m 500m 10
 endloop
-comment line-- # meas_loop_cv p c {E_begin} , {E_vtx1}, {E_vtx2},{E_step},{ scan_rate}
+# meas_loop_cv p c {E_begin} , {E_vtx1}, {E_vtx2},{E_step},{ scan_rate}   ---[comment line]
 meas_loop_cv p c -500m -500m +500m 10m 100m 
 	pck_start
 	pck_add p
@@ -65,7 +66,7 @@ meas_loop_cv p c -500m -500m +500m 10m 100m
 endloop
 on_finished:
 cell_off
-
+```
 ## Code Line used for enter CV parameter value in above Methodscript:
 |Code line|Purpose|
 |---|---|
@@ -75,6 +76,7 @@ cell_off
 
 ## Methodscript For DPV
 
+```
 e
 var c
 var p
@@ -105,7 +107,7 @@ meas_loop_dpv p c -500m 500m 10m 200m 20m 100m
 endloop
 on_finished:
 cell_off
-
+```
 ## Code Line used for enter DPV parameter value in above Methodscript:
 |Code line|Purpose|
 |---|---|
