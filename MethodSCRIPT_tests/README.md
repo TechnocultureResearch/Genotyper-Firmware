@@ -29,7 +29,8 @@ Step 1 : Open the CV (or any technique) Methodscript files in PStrace software a
 
 Then Compare this CV methodscript file of PStrace with [example_cv.mscr](https://github.com/TechnocultureResearch/Genotyper-Firmware/blob/dev/MethodSCRIPT_tests/scripts/example_cv.mscr) (CV methodscript example file) provided by palmsens company (as shown below)
 
-![exampleCV](https://user-images.githubusercontent.com/86110190/181878899-0d46e213-58b6-45f2-8429-a54f23cd3add.JPG)
+![exampleCV](https://user-images.githubusercontent.com/86110190/181880244-8bf8d143-e87d-4418-a031-693253b3f3f0.JPG)
+
 
 Then we can see that there is some changes in example code like 
 1. 4 to 6 line code `[set_pgstat_chan 1, set_pgstat_mode 0, set_pgstat_chan 0]` in PStrace methodscript file (as shown in image 1) can be removed or add. In the example code it has been removed to select default channel 0
