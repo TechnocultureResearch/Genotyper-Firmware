@@ -21,7 +21,7 @@ For execution of any electrochemical measurement techniques like CV,DPV,SWV,OCP 
 |[OCP_es_pico.mscr](https://github.com/TechnocultureResearch/Genotyper-Firmware/blob/dev/MethodSCRIPT_tests/scripts/OCP_methodscript.mscr)|This has Methodcript for OCP measurement|
 |[SWV_es_pico.mscr](https://github.com/TechnocultureResearch/Genotyper-Firmware/blob/dev/MethodSCRIPT_tests/scripts/SWV_es_pico.mscr)|This has Methodcript for OCP measurement|
 
-# How to generate Methodscript file for python
+# How to troubleshhot Methodscript file of PStrace to Executable Methodscript for python
 
 Step 1 : Open the CV (or any technique) Methodscript files in PStrace software as shown below 
 
@@ -34,18 +34,84 @@ Then Compare this CV methodscript file of PStrace with [example_cv.mscr](https:/
 
 Then we can see that there is some changes in example code like 
 1. 4 to 6 line code `[set_pgstat_chan 1, set_pgstat_mode 0, set_pgstat_chan 0]` in PStrace methodscript file (as shown in image 1) can be removed or add. In the example code it has been removed to select default channel 0
-2. 9th line code that is `[set_range_minmax da -500m 500m]` in PStrace methodscript file (as shown in image 1) removed in example code  
+2. 9th line code that is `[set_range_minmax da -500m 500m]` in PStrace methodscript file (as shown in image 1) is removed in example code  
 3. 15 to 18 line code `[ pck_start, pck_add p, pck_add c, pck_end]` in PStrace methodscript file (as shown in image 1) is removed in example code
 
-# How to Implement CV technique using Methodscipt using python
+# How to Implement Different Technique in Emstate Pico Development Kit using Methodscipt with Python
 
-## Code used for enter parameter value:
+## Methodscript For CV
+
+e
+var c
+var p
+set_pgstat_mode 2
+set_max_bandwidth 40
+set_range ba 100u
+set_autoranging ba 1n 100u
+#  set_e {E_begin}
+set_e -500m
+cell_on
+#autorange for 1s prior to CV
+# meas_loop_ca p c {E_begin} {E_vertex2} {t_equilibration}
+
+meas_loop_ca p c -500m 500m 10
+endloop
+# meas_loop_cv p c {E_begin} , {E_vtx1}, {E_vtx2},{E_step},{ scan_rate}
+meas_loop_cv p c -500m -500m +500m 10m 100m 
+	pck_start
+	pck_add p
+	pck_add c
+	pck_end
+endloop
+on_finished:
+cell_off
+
+## Code Line used for enter CV parameter value in above Methodscript:
 |Code line|Purpose|
 |---|---|
 |`set_e {E_begin}`|This code line is used to enter the `Ebegin` value of CV technique|
 |`meas_loop_ca p c {E_begin} {E_vertex2} {t_equilibration}`|This code line is used to enter the `Ebegin` , `Evertex2` and ` tequilibration` value of CV technique|
 |`meas_loop_cv p c {E_begin} , {E_vtx1}, {E_vtx2},{E_step},{ scan_rate}`|This code line is used to enter the `Ebegin` , `Evertex1`, `Evertex2`, `Estep` and  ` scanrate` value of CV technique|
 
+## Methodscript For DPV
+
+e
+var c
+var p
+#var i
+#store_var i 0i ja
+# any changes in below 4 lines should
+# will result in column index error
+set_pgstat_chan 1
+set_pgstat_mode 0
+set_pgstat_chan 0
+set_pgstat_mode 2
+set_max_bandwidth 40
+# set_range_minmax da {-Ebegin} {Amplitude+Eend}
+set_range_minmax da -500m 700m
+set_range ba 100u
+set_autoranging ba 100n 100u
+cell_on
+#Equilibrate at -300mV and autorange for 2s prior to SWV
+#Below line meas_loop_ca p c {Ebegin} {Eend} {tequilibration}
+meas_loop_ca p c -500m 500m 5
+endloop
+# meas_loop_dpv p c {E_begin} {E_end} {E_step} {E_pulse} {t_pulse} {scan_rate}
+meas_loop_dpv p c -500m 500m 10m 200m 20m 100m
+	pck_start
+	pck_add p
+	pck_add c
+	pck_end
+endloop
+on_finished:
+cell_off
+
+## Code Line used for enter DPV parameter value in above Methodscript:
+|Code line|Purpose|
+|---|---|
+|`set_range_minmax da {-Ebegin} {Amplitude+Eend}`|In this code line, we have to enter the value of `Ebegin`, 'Amplitude` and `Eend`parameter value of DPV |
+|`meas_loop_ca p c {Ebegin} {Eend} {tequilibration}`|This code line is used to enter the `Ebegin` , `Eend` and ` tequilibration` value of DPV technique|
+|`meas_loop_dpv p c {E_begin} {E_end} {E_step} {E_pulse} {t_pulse} {scan_rate}`|This code line is used to enter the `Ebegin` , `Eend`, `Estep`, `Epulse`,`tpulse` and `scanrate` value of DPV technique|
 
 
 
