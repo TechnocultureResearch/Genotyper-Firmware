@@ -21,3 +21,24 @@ For execution of any electrochemical measurement techniques like CV,DPV,SWV,OCP 
 |[OCP_es_pico.mscr](https://github.com/TechnocultureResearch/Genotyper-Firmware/blob/dev/MethodSCRIPT_tests/scripts/OCP_methodscript.mscr)|This has Methodcript for OCP measurement|
 |[SWV_es_pico.mscr](https://github.com/TechnocultureResearch/Genotyper-Firmware/blob/dev/MethodSCRIPT_tests/scripts/SWV_es_pico.mscr)|This has Methodcript for OCP measurement|
 
+# How to generate Methodscript file  using python
+
+Step 1 : Open the CV (or any technique) Methodscript files in PStrace software as shown below 
+
+![MS](https://user-images.githubusercontent.com/86110190/181878414-b4884632-3875-469e-ac3b-75df92a69d09.JPG)
+
+Then Compare this CV methodscript file of PStrace with [example_cv.mscr](https://github.com/TechnocultureResearch/Genotyper-Firmware/blob/dev/MethodSCRIPT_tests/scripts/example_cv.mscr) (CV methodscript example file) provided by palmsens company (as shown below)
+
+![exampleCV](https://user-images.githubusercontent.com/86110190/181878899-0d46e213-58b6-45f2-8429-a54f23cd3add.JPG)
+
+Then we can see that there is some changes in example code like 
+1. 4 to 6 line code `[set_pgstat_chan 1, set_pgstat_mode 0, set_pgstat_chan 0]` in PStrace methodscript file (as shown in image 1) can be removed or add. In the example code it has been removed to select default channel 0
+2. 9th line code that is `[set_range_minmax da -500m 500m]` in PStrace methodscript file (as shown in image 1) removed in example code  
+3. 15 to 18 line code `[ pck_start, pck_add p, pck_add c, pck_end]` in PStrace methodscript file (as shown in image 1) is removed in example code
+
+# How to Implement CV technique using Methodscipt using python
+
+
+
+
+
