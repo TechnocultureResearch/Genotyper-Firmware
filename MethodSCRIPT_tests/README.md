@@ -21,7 +21,7 @@ For execution of any electrochemical measurement techniques like CV,DPV,SWV,OCP 
 |[OCP_es_pico.mscr](https://github.com/TechnocultureResearch/Genotyper-Firmware/blob/dev/MethodSCRIPT_tests/scripts/OCP_methodscript.mscr)|This has Methodcript for OCP measurement|
 |[SWV_es_pico.mscr](https://github.com/TechnocultureResearch/Genotyper-Firmware/blob/dev/MethodSCRIPT_tests/scripts/SWV_es_pico.mscr)|This has Methodcript for OCP measurement|
 
-# How to generate Methodscript file  using python
+# How to generate Methodscript file for python
 
 Step 1 : Open the CV (or any technique) Methodscript files in PStrace software as shown below 
 
