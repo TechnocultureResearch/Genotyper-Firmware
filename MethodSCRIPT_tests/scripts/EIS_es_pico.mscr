@@ -14,7 +14,7 @@ set_autoranging ba 1p 1
 set_autoranging ab 1p 1
 # Turn cell on
 cell_on
-# Call the EIS loop with 15 mV amplitude, f_start = 200 kHz, f_end = 20 Hz, nrOfPoints = 41, 0 mV DC
+# Call the EIS loop with (Eac = 10 mV amplitude),(max freq f_start = 200 kHz),(min frq f_end = 100mHz), (nr Of frequencies = 12) ,(Edc= 0 mV DC)
 meas_loop_eis f r j 10m 200k 100m 12 0m
 	# Add the returned variables to the data package
 	pck_start

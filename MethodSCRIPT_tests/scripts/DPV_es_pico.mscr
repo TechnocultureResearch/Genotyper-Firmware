@@ -16,10 +16,10 @@ set_range ba 100u
 set_autoranging ba 100n 100u
 cell_on
 #Equilibrate at -300mV and autorange for 2s prior to SWV
-# below line meas_loop_ca p c {Ebegin Eend tequilibration}
+# below line meas_loop_ca p c {Ebegin} {Eend} {tequilibration}
 meas_loop_ca p c -500m 500m 5
 endloop
-# Measure DPV: E, I, E_begin, E_end, E_step, E_pulse,t_pulse, scan_rate
+# meas_loop_dpv p c {E_begin} {E_end} {E_step} {E_pulse} {t_pulse} {scan_rate}
 meas_loop_dpv p c -500m 500m 10m 200m 20m 100m
 	pck_start
 	pck_add p
