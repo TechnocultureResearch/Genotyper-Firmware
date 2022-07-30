@@ -116,8 +116,8 @@ cell_off
 
 ## Methodscript For EIS
 
-```
-e
+
+```e
 # Declare variables for frequency, and real and imaginary parts of complex result
 var f
 var r
@@ -153,7 +153,7 @@ cell_off
 
 ## Methodscript For SWV
 
-'''
+```
 e
 var c
 var p
@@ -186,22 +186,14 @@ meas_loop_swv p c f r -500m 500m 10m 200m 2
 	pck_add r
 	pck_end
 endloop
-# Reverse SWV
-#meas_loop_swv p c f r 00m -300m 5m 50m 5
-#	pck_start
-#	pck_add p
-#	pck_add c
-#	pck_add f
-#	pck_add r
-#	pck_end
-#endloop
 on_finished:
 cell_off
 ```
 ## Code Line used for enter SWV parameter value in above Methodscript:
+
 |Code line|Purpose|
 |---|---|
-|`set_range_minmax da {-Amplitude-Ebegin} {Amplitude+Eend}`|In this code line, we have to enter the value of `Ebegin`, 'Amplitude` and `Eend`parameter value of DPV |
-|`meas_loop_ca p c {Ebegin} {Eend} {tequilibration}`|This code line is used to enter the `Ebegin` , `Eend` and ` tequilibration` value of DPV technique|
+|`set_range_minmax da {-Amplitude-Ebegin} {Amplitude+Eend}`|In this code line, we have to enter the value of `Ebegin`, 'Amplitude` and `Eend`parameter value of SWV|
+|`meas_loop_ca p c {Ebegin} {Eend} {tequilibration}`|This code line is used to enter the `Ebegin` , `Eend` and ` tequilibration` value of SWV technique|
 |`meas_loop_swv p c f r {E_begin} {E_end} {E_step} {E_amp} {freq(Hz)}`|This code line is used to enter the `Ebegin` , `Eend`, `Estep`, `Eamp`,`Frequency` value of SWV technique|
 
