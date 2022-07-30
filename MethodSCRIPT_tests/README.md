@@ -147,6 +147,7 @@ on_finished:
 cell_off
 ```
 ## Code Line used for enter EIS parameter value in above Methodscript:
+
 |Code line|Purpose|
 |---|---|
 |`meas_loop_eis f r j {Eac} {Max Freq} {Min Freq} {No of Freq} {Edc}`|This code line is used to enter the `Eac` , `Max Frequency`, `Min Frquency`, `No. of Frequency` and `Edc` value of EIS technique|
@@ -196,4 +197,53 @@ cell_off
 |`set_range_minmax da {-Amplitude-Ebegin} {Amplitude+Eend}`|In this code line, we have to enter the value of `Ebegin`, 'Amplitude` and `Eend`parameter value of SWV|
 |`meas_loop_ca p c {Ebegin} {Eend} {tequilibration}`|This code line is used to enter the `Ebegin` , `Eend` and ` tequilibration` value of SWV technique|
 |`meas_loop_swv p c f r {E_begin} {E_end} {E_step} {E_amp} {freq(Hz)}`|This code line is used to enter the `Ebegin` , `Eend`, `Estep`, `Eamp`,`Frequency` value of SWV technique|
+
+## Methodscript For Chronoamperometry
+
+```
+e
+var c
+var p
+var i
+store_var i 0i ja
+# any changes in below 4 lines should
+# will result in column index error
+set_pgstat_chan 1
+set_pgstat_mode 0
+set_pgstat_chan 0
+set_pgstat_mode 2
+set_max_bandwidth 40
+# set_range_minmax da {Edc} {Edc}
+set_range_minmax da 500m 500m
+set_range ba 100u
+set_autoranging ba 100n 100u
+cell_on
+#Equilibrate at -300mV and autorange for 2s prior to SWV
+# below line meas_loop_ca p c {Edc Edc tequilibration}
+#meas_loop_ca p c 500m 500m 2
+#pck_start
+#pck_add p
+#pck_add c
+#pck_end
+#endloop
+# meas_loop_ca p c {Edc} {T_interval}  {T_run=20sec + T_interval}
+meas_loop_ca p c 500m 100m 20100m
+pck_start
+pck_add p
+pck_add c
+pck_end
+endloop
+on_finished:
+cell_off
+
+```
+## Code Line used for enter Chronoamperometry parameter value in above Methodscript:
+
+|Code line|Purpose|
+|---|---|
+|`set_range_minmax da {Edc} {Edc}`|In this code line, we have to enter the value of `Edc` value of Chronoamperometry|
+|`meas_loop_ca p c {Edc Edc tequilibration}`|This code line is used to enter the `Edc` and ` tequilibration` value of Chronoamperometry technique|
+|`meas_loop_ca p c {Edc} {T_interval}  {T_run=20sec + T_interval}`|This code line is used to enter the `Edc` , `Tinterval`, `T_run` value of Chronoamperometry technique|
+
+
 
