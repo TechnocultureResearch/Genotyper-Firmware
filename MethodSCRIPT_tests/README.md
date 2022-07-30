@@ -82,23 +82,22 @@ var c
 var p
 #var i
 #store_var i 0i ja
-# any changes in below 4 lines should
-# will result in column index error
+# any changes in below 4 lines should  ---[comment line]
+# will result in column index error  ---[comment line]
 set_pgstat_chan 1
 set_pgstat_mode 0
 set_pgstat_chan 0
 set_pgstat_mode 2
 set_max_bandwidth 40
-# set_range_minmax da {-Ebegin} {Amplitude+Eend}
+# set_range_minmax da {-Ebegin} {Amplitude+Eend}  ---[comment line]
 set_range_minmax da -500m 700m
 set_range ba 100u
 set_autoranging ba 100n 100u
 cell_on
-#Equilibrate at -300mV and autorange for 2s prior to SWV
-#Below line meas_loop_ca p c {Ebegin} {Eend} {tequilibration}
-meas_loop_ca p c -500m 500m 5
+#Below line meas_loop_ca p c {Ebegin} {Eend} {tequilibration}  ---[comment line]
+meas_loop_ca p c -500m 500m 5 
 endloop
-# meas_loop_dpv p c {E_begin} {E_end} {E_step} {E_pulse} {t_pulse} {scan_rate}
+# meas_loop_dpv p c {E_begin} {E_end} {E_step} {E_pulse} {t_pulse} {scan_rate}   ---[comment line]
 meas_loop_dpv p c -500m 500m 10m 200m 20m 100m
 	pck_start
 	pck_add p
@@ -115,6 +114,42 @@ cell_off
 |`meas_loop_ca p c {Ebegin} {Eend} {tequilibration}`|This code line is used to enter the `Ebegin` , `Eend` and ` tequilibration` value of DPV technique|
 |`meas_loop_dpv p c {E_begin} {E_end} {E_step} {E_pulse} {t_pulse} {scan_rate}`|This code line is used to enter the `Ebegin` , `Eend`, `Estep`, `Epulse`,`tpulse` and `scanrate` value of DPV technique|
 
+## Methodscript For EIS
 
+```
+e
+# Declare variables for frequency, and real and imaginary parts of complex result
+var f
+var r
+var j
+# Set to channel 0 (Lemo)
+set_pgstat_chan 1
+# Set mode to high speed
+# other modes wont work for EIS
+set_pgstat_mode 3
+# Enable all supported ranges for current autoranging
+set_autoranging ba 1p 1
+# Enable all supported ranges for potential autoranging
+set_autoranging ab 1p 1
+# Turn cell on
+cell_on
+# Call the EIS loop with (Eac = 10 mV amplitude),(max freq f_start = 200 kHz),(min frq f_end = 100mHz), (nr Of frequencies = 12) ,(Edc= 0 mV DC)
+# meas_loop_eis f r j {Eac} {Max Freq} {Min Freq} {No of Freq} {Edc}
+meas_loop_eis f r j 10m 200k 100m 12 0m
+	# Add the returned variables to the data package
+	pck_start
+	pck_add f
+	pck_add r
+	pck_add j
+	pck_end
+endloop
+on_finished:
+cell_off
+```
+## Code Line used for enter EIS parameter value in above Methodscript:
+|Code line|Purpose|
+|---|---|
+
+|`meas_loop_eis f r j {Eac} {Max Freq} {Min Freq} {No of Freq} {Edc}`|This code line is used to enter the `Eac` , `Max Frequency`, `Min Frquency`, `No. of Frequency` and `Edc` value of EIS technique|
 
 
