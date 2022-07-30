@@ -149,7 +149,6 @@ cell_off
 ## Code Line used for enter EIS parameter value in above Methodscript:
 |Code line|Purpose|
 |---|---|
-
 |`meas_loop_eis f r j {Eac} {Max Freq} {Min Freq} {No of Freq} {Edc}`|This code line is used to enter the `Eac` , `Max Frequency`, `Min Frquency`, `No. of Frequency` and `Edc` value of EIS technique|
 
 
