@@ -75,7 +75,8 @@ cell_off
 
 ## Result for CV 
 CV is calculated by using gold SPE with using 1mM methylene blue 
-![Uploading CV.png…]()
+![CV](https://user-images.githubusercontent.com/86110190/182079220-1b05d737-d8a9-4c31-a5a5-bfd5ed75461a.png)
+
 
 
 ## Methodscript For DPV
@@ -163,6 +164,11 @@ cell_off
 |Code line|Purpose|
 |---|---|
 |`meas_loop_eis f r j {Eac} {Max Freq} {Min Freq} {No of Freq} {Edc}`|This code line is used to enter the `Eac` , `Max Frequency`, `Min Frquency`, `No. of Frequency` and `Edc` value of EIS technique|
+
+## Result of EIS
+EIS measurement is taken using Dummy cell provided by palmsens company
+
+![EIS](https://user-images.githubusercontent.com/86110190/182079448-d305d124-8c8b-4ce2-96d4-4eb562f3b776.png)
 
 ## Methodscript For SWV
 
