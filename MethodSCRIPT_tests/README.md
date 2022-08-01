@@ -54,7 +54,6 @@ set_e -500m
 cell_on
 # autorange for 1s prior to CV   ---[comment line]
 # meas_loop_ca p c {E_begin} {E_vertex2} {t_equilibration}   ---[comment line]
-
 meas_loop_ca p c -500m 500m 10
 endloop
 # meas_loop_cv p c {E_begin} , {E_vtx1}, {E_vtx2},{E_step},{ scan_rate}   ---[comment line]
@@ -73,6 +72,11 @@ cell_off
 |`set_e {E_begin}`|This code line is used to enter the `Ebegin` value of CV technique|
 |`meas_loop_ca p c {E_begin} {E_vertex2} {t_equilibration}`|This code line is used to enter the `Ebegin` , `Evertex2` and ` tequilibration` value of CV technique|
 |`meas_loop_cv p c {E_begin} , {E_vtx1}, {E_vtx2},{E_step},{ scan_rate}`|This code line is used to enter the `Ebegin` , `Evertex1`, `Evertex2`, `Estep` and  ` scanrate` value of CV technique|
+
+## Result for CV 
+CV is calculated by using gold SPE with using 1mM methylene blue 
+![Uploading CV.png…]()
+
 
 ## Methodscript For DPV
 
@@ -113,6 +117,14 @@ cell_off
 |`set_range_minmax da {-Ebegin} {Amplitude+Eend}`|In this code line, we have to enter the value of `Ebegin`, 'Amplitude` and `Eend`parameter value of DPV |
 |`meas_loop_ca p c {Ebegin} {Eend} {tequilibration}`|This code line is used to enter the `Ebegin` , `Eend` and ` tequilibration` value of DPV technique|
 |`meas_loop_dpv p c {E_begin} {E_end} {E_step} {E_pulse} {t_pulse} {scan_rate}`|This code line is used to enter the `Ebegin` , `Eend`, `Estep`, `Epulse`,`tpulse` and `scanrate` value of DPV technique|
+
+
+
+## Result for DPV 
+DPV is calculated by using gold SPE with using 1mM methylene blue 
+![DPV](https://user-images.githubusercontent.com/86110190/182078884-5e8d0283-653b-4b0a-b51f-2e9f341c7e45.png)
+
+
 
 ## Methodscript For EIS
 
@@ -197,6 +209,13 @@ cell_off
 |`set_range_minmax da {-Amplitude-Ebegin} {Amplitude+Eend}`|In this code line, we have to enter the value of `Ebegin`, 'Amplitude` and `Eend`parameter value of SWV|
 |`meas_loop_ca p c {Ebegin} {Eend} {tequilibration}`|This code line is used to enter the `Ebegin` , `Eend` and ` tequilibration` value of SWV technique|
 |`meas_loop_swv p c f r {E_begin} {E_end} {E_step} {E_amp} {freq(Hz)}`|This code line is used to enter the `Ebegin` , `Eend`, `Estep`, `Eamp`,`Frequency` value of SWV technique|
+
+
+## Result of SWV
+SWV is calculated by using gold SPE with using 1mM methylene blue.
+
+![SWV](https://user-images.githubusercontent.com/86110190/182079047-9a113104-180d-485e-a56b-26245d83722c.png)
+
 
 ## Methodscript For Chronoamperometry
 
